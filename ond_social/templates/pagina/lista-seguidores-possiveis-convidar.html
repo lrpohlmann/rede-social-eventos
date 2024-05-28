@@ -1,0 +1,42 @@
+{% extends 'pagina/base.html' %}
+{% load components %}
+
+{% block titulo_pagina %}Convidar | Ond{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="flex flex-col gap-5">
+    <div>
+        <a href="{% url 'evento:ondevento_home' id_ondevento=ondevento.pk %}">Voltar</a>
+    </div>
+    <div>
+        <h1 class="text-4xl">Convidar Seguidores</h1>
+    </div>
+    <div>
+        <div class="flex flex-col gap-3">
+            {% for seguidor in possiveis_convidados %}
+            <div class="flex gap-1">
+                <a href="{% url 'perfil:perfil' id_usuario=seguidor.pk %}">
+                    {% if seguidor.foto %}
+                    <div>
+                        <img class="icon-perfil-p" src="{{seguidor.foto.url}}" alt="">
+                    </div>
+                    {% else %}
+                    <div class="border rounded-full w-8 h-8 bg-blue-500"></div>
+                    {% endif %}
+                </a>
+                <div class="flex flex-col grow justify-center">
+                    <div class="flex justify-between items-center">
+                        <a href="{% url 'perfil:perfil' id_usuario=seguidor.pk %}">
+                            <div>
+                                {{seguidor.username|truncatechars:20}}
+                            </div>
+                        </a>
+                        {% botao_convidar seguidor=seguidor situacao_para_convite=seguidor.situacao_para_convite ondevento=ondevento %}{% endbotao_convidar %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock conteudo %}

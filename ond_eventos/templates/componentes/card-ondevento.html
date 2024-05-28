@@ -1,0 +1,56 @@
+{% load components %}
+<a href="{% url 'evento:ondevento_home' id_ondevento=evento.pk %}">
+    <article
+        class="evento-card border border-secundaria-light rounded-3xl grid grid-rows-2 max-h-72 hover:brightness-95 overflow-hidden">
+        <!-- IMAGEM EVENTO -->
+        <div class="bg-gray-500 relative">
+            {% if evento.capa %}
+            <img class="w-full h-full object-cover" src="{{evento.capa.url}}" alt="">
+            {% endif %}
+            {% #pilula_status status=evento.situacao %}
+        </div>
+        <!-- INFORMAÇÕES EVENTO -->
+        <div class="border-t px-3 py-2 flex flex-col gap-2 overflow-hidden bg-neutral-100">
+            <div>
+                <div
+                    class="text-xs flex flex-nowrap gap-1 items-center overflow-hidden text-ellipsis whitespace-nowrap">
+                    {% if evento.situacao == "ABERTO" %}
+                    <div class="font-bold">
+                        Em:
+                        <time datetime="{{evento.inicio}}" class="data-inicio">{{evento.inicio | timeuntil }}</time>
+                    </div>
+                    {% endif %}
+                    {% #pilula_tipo_evento tipo=evento.get_tipo_display %}
+                </div>
+                <div>
+                    <div>
+                        <h3 class="text-xl leading-tight overflow-hidden text-ellipsis whitespace-nowrap">
+                            {{ evento.nome }}</h3>
+                    </div>
+                    <div class="text-xs overflow-hidden text-ellipsis whitespace-nowrap">
+                        <span>📍</span>
+                        <span>{{evento.endereco}}</span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="flex">
+                    {% for i in evento.confirmados_no_evento.all|slice:':7' %}
+                    <div class="rounded-full {% if not forloop.first %}-ml-3{% endif %}">
+                        <img class="icon-perfil-p" src="{% if i.do_usuario.foto %}{{i.do_usuario.foto.url}}{% endif %}"
+                            alt="">
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="flex gap-1">
+                    <div class="text-sm">
+                        ✅ {{evento.numero_confirmados}}
+                    </div>
+                    <div class="text-sm">
+                        💬 {{evento.contagem_de_comentarios}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</a>

@@ -1,0 +1,84 @@
+{% extends 'pagina/base.html' %}
+
+{% block titulo_pagina %}Editar Perfil | Ond{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-6 lg:col-start-4 flex flex-col items-center gap-5">
+    <div class="flex justify-center lg:block">
+        <h1 class="text-4xl">Editar Perfil</h1>
+    </div>
+    <div>
+        <form action="{% url 'perfil:editar_perfil' %}" method="post" enctype="multipart/form-data">
+            <div class="flex flex-col gap-2">
+                <div>
+                    {%csrf_token%}
+                </div>
+                <div class="flex flex-col gap-1">
+                    {{form.foto_perfil.label_tag}}
+                    <div class="flex gap-1">
+                        {{form.foto_perfil}}
+                    </div>
+                    {% include 'componente/form/lista-erros.html' with erros=form.foto_perfil.errors only %}
+                </div>
+                <div class="flex flex-col gap-1">
+                    {{form.username.label_tag}}
+                    {{form.username}}
+                    <button class="btn-padrao"
+                        _="on click toggle between .btn-padrao and .btn-sucesso then toggle [@disabled=true] on previous <input/> then focus() on previous <input/>
+                    then if my innerText == 'Editar' set my innerText to 'Não editar' else set my innerText to 'Editar'"
+                        type="button">Editar</button>
+                    {% include 'componente/form/lista-erros.html' with erros=form.username.errors only %}
+                </div>
+                <div class="flex flex-col gap-1">
+                    <fieldset class="flex flex-col gap-1" id="bio-set" disabled="">
+                        {{form.bio.label_tag}}
+                        {{form.bio}}
+                        <div>
+                            {{form.deletar_bio.label_tag}}
+                            {{form.deletar_bio}}
+                        </div>
+                    </fieldset>
+                    <button class="btn-padrao"
+                        _="on click toggle between .btn-padrao and .btn-sucesso toggle [@disabled=true] on the previous <fieldset/> 
+                        then if my innerText == 'Editar' set my innerText to 'Não editar' else set my innerText to 'Editar'"
+                        type="button">Editar</button>
+                    {% include 'componente/form/lista-erros.html' with erros=form.foto_perfil.errors only %}
+                </div>
+                <div class="flex flex-col gap-1">
+                    <fieldset class="flex flex-col gap-1" id="insta-set" disabled="">
+                        {{form.insta.label_tag}}
+                        {{form.insta}}
+                        <div>
+                            {{form.deletar_insta.label_tag}}
+                            {{form.deletar_insta}}
+                        </div>
+                    </fieldset>
+                    <button class="btn-padrao"
+                        _="on click toggle between .btn-padrao and .btn-sucesso toggle [@disabled=true] on previous <fieldset/>
+                    then if my innerText == 'Editar' set my innerText to 'Não editar' else set my innerText to 'Editar'"
+                        type="button">Editar</button>
+                    {% include 'componente/form/lista-erros.html' with erros=form.foto_perfil.errors only %}
+                </div>
+                <div class="flex flex-col gap-1">
+                    <fieldset class="flex flex-col gap-1" id="x-set" disabled="">
+                        {{form.x.label_tag}}
+                        {{form.x}}
+                        <div>
+                            {{form.deletar_x.label_tag}}
+                            {{form.deletar_x}}
+                        </div>
+                    </fieldset>
+                    <button class="btn-padrao"
+                        _="on click toggle between .btn-padrao and .btn-sucesso toggle [@disabled=true] on previous <fieldset/>
+                    then if my innerText == 'Editar' set my innerText to 'Não editar' else set my innerText to 'Editar'"
+                        type="button">Editar</button>
+                    {% include 'componente/form/lista-erros.html' with erros=form.foto_perfil.errors only %}
+                </div>
+                <div>
+                    <button class="btn-padrao" type="submit">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock conteudo %}

@@ -1,0 +1,22 @@
+<section class="flex flex-col gap-5">
+    <h2 class="text-2xl">
+        Confirmados: <span
+            _="on ondPresencaUsuarioConfirmada from <body/> set contagem to my innerText as Int then increment contagem then put contagem into me then on ondPresencaUsuarioDesconfirmada from <body/> set contagem to my innerText as Int then decrement contagem then put contagem into me">{{ondevento.confirmados_no_evento__count}}</span>
+    </h2>
+    <div class="flex gap-1">
+        {% for confirmacao in ondevento.confirmados_no_evento.all %}
+        {% if forloop.counter0 < 4 %}
+
+        {% if confirmacao.do_usuario.foto %}
+        <a href="{% url 'perfil:perfil' id_usuario=confirmacao.do_usuario.pk %}">
+            <img class="icon-perfil-p" src="{{confirmacao.do_usuario.foto.url}}"></img>
+        </a>
+        {% else %}
+        <a href="{% url 'perfil:perfil' id_usuario=confirmacao.do_usuario.pk %}">
+            <div class="border rounded-full w-8 h-8 bg-blue-500"></div>
+        </a>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>

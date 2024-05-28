@@ -1,0 +1,7 @@
+from .home import home_view
+from .ond_e_hoje import onde_e_hoje_view
+from .select_cidade_view import option_cidade_view
+from .criar_ondevento_view import criar_ondevento_view
+from .home_do_ondevento_view import home_do_ondevento_view
+from .comentarios_do_ondevento import comentarios_do_ondevento_view
+from .editar_ondevento import editar_ondevento_view

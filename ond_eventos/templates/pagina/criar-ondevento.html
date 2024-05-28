@@ -1,0 +1,13 @@
+<!-- noformat -->
+{% extends 'pagina/base.html' %} {% block titulo_pagina %}Criar Evento | OND{%endblock titulo_pagina %}
+<!-- noformat -->
+{% block conteudo %}
+<div class="col-span-full flex justify-center lg:block">
+    <h1 class="text-4xl">Criar Evento</h1>
+</div>
+<div class="col-span-full lg:col-span-3 flex flex-col gap-5">
+    <form hx-post="{% url 'evento:criar_ondevento' %}" hx-swap="innerHTML" hx-encoding='multipart/form-data'>
+        {% include 'fragmentos/form-manipular-ondevento.html' with formulario_criar_evento=formulario_criar_evento post_url='evento:criar_ondevento' only %}
+    </form>
+</div>
+{% endblock conteudo %}

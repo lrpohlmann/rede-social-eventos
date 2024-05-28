@@ -1,0 +1,61 @@
+{% extends 'pagina/base.html' %}
+{% load static %}
+{% load components %}
+
+{% block titulo_pagina %}{{usuario.username}} | Ond{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-6 lg:col-start-4 flex flex-col items-center gap-5">
+    <div class="flex justify-center">
+        {% if usuario.foto %}
+        <img class="object-cover w-32 h-32 bg-indigo-100 rounded-full text-indigo-500" src="{{usuario.foto.url}}"
+            alt="">
+        {% else %}
+        <div class="w-32 h-32 bg-indigo-100 rounded-full text-indigo-500"></div>
+        {% endif %}
+    </div>
+    <div class="flex justify-center">
+        <h1 class="text-4xl font-medium text-gray-700">{{usuario.username}}</h1>
+    </div>
+    {% if relacao.eu_com_ele != "BLQ" and relacao.ele_comigo != "BLQ" %}
+
+    {% if usuario.x %}
+    <div class="flex justify-center gap-1">
+        <span>X</span>
+        <a class="link-padrao" href="https://www.twitter.com/{{usuario.x}}">{{usuario.x}}</a>
+    </div>
+    {% endif %}
+    {% if usuario.insta %}
+    <div class="flex justify-center gap-1">
+        <span>Instagram</span>
+        <a class="link-padrao" href="https://www.instagram.com/{{usuario.insta}}/">{{usuario.insta}}</a>
+    </div>
+    {% endif %}
+    {% if usuario.bio %}
+    <div class="flex justify-center">
+        {{usuario.bio}}
+    </div>
+    {% endif %}
+    <div class="grid grid-cols-2 grid-rows-2 gap-2">
+        <span class="place-self-start text-gray-400">Seguidores</span>
+        <span class="place-self-end font-bold text-gray-700 text-xl"
+            _="on usuarioSeguiuPerfil from <body/> set contagem to my innerText as Int then increment contagem then put contagem into me then on usuarioDesseguiuPerfil from <body/> set contagem to my innerText as Int then decrement contagem then put contagem into me">{{usuario.contagem_seguidores}}</span>
+        <span class="place-self-start text-gray-400">Seguindo</span>
+        <span class="place-self-end font-bold text-gray-700 text-xl">{{usuario.contagem_seguindo}}</span>
+    </div>
+    {% elif relacao.eu_com_ele == "BLQ" %}
+    <div class="text-center text-gray-500 italic">
+        Usuário bloqueado
+    </div>
+    {% elif relacao.ele_comigo == "BLQ" %}
+    <div class="text-center text-gray-500 italic">
+        Tomaste o block
+    </div>
+    {% endif %}
+    <div class="flex justify-center">
+        {% if user.username != usuario.username %}
+        {% #dialog_opcoes_social relacao=relacao usuario=usuario %}
+        {% endif %}
+    </div>
+</div>
+{% endblock conteudo %}

@@ -1,0 +1,16 @@
+{% load components %}
+<div class="flex flex-col gap-3" data-elemento="conversa">
+    {% #comentario_colorido comentario=comentario %}
+    <div class="grow flex flex-col flex-nowrap gap-1" style="color: inherit;" data-respostas="">
+        {% for resposta in comentario.respostas_do_comentario.all %}
+        <div
+            class="pl-5 border rounded-l-lg rounded-r-md even:bg-secundaria-light odd:bg-terciaria-light overflow-hidden">
+            {% #resposta_comentario_colorido resposta=resposta %}
+        </div>
+        {% endfor %}
+        <div class="mt-1 text-center bg-neutral-100 border rounded-md">
+            <a class="link-padrao" href="{% url 'social:ver_conversa' id_comentario=comentario.pk %}">Ver conversa</a>
+        </div>
+    </div>
+    <hr>
+</div>

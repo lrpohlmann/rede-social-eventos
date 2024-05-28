@@ -1,0 +1,66 @@
+{% extends 'pagina/base.html' %}
+{% load components %}
+
+{% block titulo_pagina %}{{ondevento.nome}} | OND{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<article class="col-span-1 lg:col-span-6 lg:col-start-4 gap-5 break-words hyphens-manual">
+    <div class="flex flex-col gap-5">
+        {% if ondevento.capa %}
+        <div class="container flex justify-center bg-slate-500">
+            <img class="h-48" src="{{ondevento.capa.url}}" alt="">
+        </div>
+        {% endif %}
+        <section class="flex flex-col gap-1 justify-between">
+            <div>
+                <div>
+                    <time class="text-sm text-gray-500 italic"
+                        datetime="{{ondevento.inicio}}">{{ondevento.inicio|date:'l d/m H:i'}}</time>
+                </div>
+                <div>
+                    <h1 class="text-3xl">{{ ondevento.nome }}</h1>
+                </div>
+                <div>
+                    <span>📍</span>
+                    <span class="text-sm">{{ondevento.endereco}}</span>
+                </div>
+                <div>
+                    por <a class="link-padrao"
+                        href="{% url 'perfil:perfil' id_usuario=ondevento.autor.pk %}">{{ondevento.autor.username}}</a>
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="flex gap-1">
+                {% botao_presenca ondevento=ondevento usuario_presenca_confirmada=ondevento.usuario_presenca_confirmada %}{% endbotao_presenca %}
+                {% if user == ondevento.autor %}
+                <div>
+                    <a class="link-btn-padrao-p"
+                        href="{% url 'evento:editar_ondevento' id_ondevento=ondevento.pk %}">Editar</a>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </section>
+
+        <hr>
+        <section>
+            <h2 class="text-2xl">Descrição do Evento</h2>
+            <div>
+                <p class="text-sm text-gray-500">
+                    {{ondevento.descricao}}
+                </p>
+            </div>
+        </section>
+        {% include 'pagina/secoes-pagina/ondevento-home/confirmados.html' with ondevento=ondevento only %}
+        <div class="flex flex-row content-center">
+            <a class="link-padrao"
+                href="{% url 'social:lista_seguidores_para_convidar' id_ondevento=ondevento.pk %}">Convidar...</a>
+        </div>
+    </div>
+    <div class="">
+        <div class="h-16" hx-get="{% url 'evento:comentarios_do_ondevento' id_ondevento=ondevento.pk %}"
+            hx-trigger="load" hx-swap="outerHTML"></div>
+    </div>
+</article>
+
+{% endblock conteudo %}

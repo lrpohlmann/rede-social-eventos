@@ -1,0 +1,42 @@
+<div id="opcoes-social">
+    {% if not relacao %}
+    <button class="btn-padrao" type="button" hx-post="{% url 'social:seguir' id_receptor=usuario.pk %}"
+        hx-swap="outerHTML" hx-target="#opcoes-social">
+        Seguir
+    </button>
+    {% elif relacao.eu_com_ele == "SEG" %}
+    <button class="btn-perigo" type="button" hx-post="{% url 'social:desseguir' id_receptor=usuario.pk %}"
+        hx-swap="outerHTML" hx-target="#opcoes-social">
+        Desseguir
+    </button type="button">
+    {% elif relacao.ele_comigo == "SEG" %}
+    <button class="btn-padrao" type="button" hx-post="{% url 'social:seguir' id_receptor=usuario.pk %}"
+        hx-swap="outerHTML" hx-target="#opcoes-social">
+        Seguir de Volta
+    </button>
+    {% elif relacao.eu_com_ele == "BLQ" %}
+    <button class="btn-perigo" type="button" hx-post="{% url 'social:desbloquear' id_receptor=usuario.pk %}"
+        hx-swap="none">Desbloquear</button>
+    {% endif %}
+
+    {% if relacao.eu_com_ele != "BLQ" %}
+    <button class="btn-padrao" type="button" _="on click call #modal-opcoes-social's showModal()">...</button>
+    <dialog id="modal-opcoes-social" class="bg-transparent">
+        <div class="border border-primaria bg-white rounded-xl flex flex-col gap-5 p-5">
+            <div>
+                <h2 class="text-2xl">
+                    Outras Opções
+                </h2>
+            </div>
+            <div>
+                <button class="btn-perigo" type="button" hx-post="{% url 'social:bloquear' id_receptor=usuario.pk %}"
+                    hx-swap="none">Bloquear</button>
+            </div>
+            <div>
+                <button class="btn-padrao-p" type="button"
+                    _="on click call #modal-opcoes-social's close()">Fechar</button>
+            </div>
+        </div>
+    </dialog>
+    {% endif %}
+</div>

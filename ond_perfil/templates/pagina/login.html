@@ -1,0 +1,36 @@
+{% extends 'pagina/base.html' %}
+
+{% block titulo_pagina %}Login | OND{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-6 lg:col-start-4 flex flex-col items-center gap-5">
+    <div class="flex justify-center md:block">
+        <h1 class="text-4xl">Login</h1>
+    </div>
+    <div>
+        <form action="{% url 'conta:login' %}" method="post">
+            <div class="flex flex-col gap-2">
+                {% csrf_token %}
+                <div class="flex flex-col gap-1">
+                    {{login_form.email.label_tag}}
+                    <div class="flex md:block">
+                        {{login_form.email}}
+                    </div>
+                    {% include 'componente/form/lista-erros.html' with erros=criar_conta_form.email.errors %}
+                </div>
+                <div class="flex flex-col gap-1">
+                    {{login_form.senha.label_tag}}
+                    <div class="flex md:block">
+                        {{login_form.senha}}
+                    </div>
+                </div>
+                {% include 'componente/form/lista-erros.html' with erros=criar_conta_form.senha.errors %}
+                <div>
+                    <button class="btn-primario" type="submit">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock conteudo %}

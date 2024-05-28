@@ -1,0 +1,18 @@
+{% load static %}
+<article class="border rounded-xl overflow-hidden hover:brightness-95" data-elemento="card-notificacao">
+    <a href="{{url_acao}}">
+        <div class="bg-neutral-100 p-1">
+            <time class="text-sm italic"
+                datetime="{{notificacao.alteracao | date:'c'}}">{{notificacao.alteracao | timesince}}</time>
+            <div class="flex gap-1 items-center">
+                <img class="icon-perfil-p" src="{% static 'img/placeholder.jpg' %}" alt="">
+                <h2 class="font-bold">{{notificacao}}</h2>
+            </div>
+        </div>
+    </a>
+    <div class="flex justify-end p-1 bg-neutral-200">
+        <button class="btn-padrao-p" type="button"
+            hx-put="{% url 'notificacao:marcar_como_visto' id_notificacao=notificacao.pk %}" hx-swap="delete"
+            hx-target="closest article">Marcar como visto</button>
+    </div>
+</article>

@@ -1,0 +1,29 @@
+{% extends 'pagina/base.html' %}
+{% load static %}
+{% load components %}
+
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-6 lg:col-start-4 flex flex-col gap-5">
+    <div>
+        <h1 class="text-4xl">
+            Notificações
+        </h1>
+    </div>
+    <div>
+        <button class="btn-padrao" type="button" hx-post="{% url 'notificacao:marcar_todas_como_visto' %}">Marcar todos
+            como visto</button>
+    </div>
+    <div>
+        <div class="flex flex-col gap-1" id="lista-minhas-notificacoes"
+            _="on todasNotificacoesVistas from <body/> set my innerHTML to ''">
+            {% if notificacoes %}
+            {% #paginador pagina=notificacoes hx-target="#lista-minhas-notificacoes" hx-select="#lista-minhas-notificacoes" %}
+            {% for notificacao in notificacoes %}
+            {% #card_notificacao notificacao=notificacao %}
+            {% endfor %}
+            {% #paginador pagina=notificacoes hx-target="#lista-minhas-notificacoes" hx-select="#lista-minhas-notificacoes" %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock conteudo %}

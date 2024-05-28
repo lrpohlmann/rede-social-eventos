@@ -1,0 +1,31 @@
+{% extends 'pagina/base.html' %}
+{% load components %}
+
+{% block titulo_pagina %}Minhas Confirmações | OND{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-6 lg:col-start-4 flex flex-col gap-5">
+    <nav>
+        <a href="{% url 'perfil:menu_principal_perfil' %}">Voltar</a>
+    </nav>
+    <div>
+        <h1 class="text-4xl">Minhas Confirmações de Presença</h1>
+    </div>
+    <div id="lista-minhas-confirmacoes">
+        {% for confirmacao in minhas_confirmacoes %}
+        <a href="{% url 'evento:ondevento_home' id_ondevento=confirmacao.no_evento.pk %}">
+            <article>
+                <div>
+                    <h2>{{confirmacao.no_evento.nome}}</h2>
+                </div>
+                <div>
+                    <span>Momento da confirmação:</span>
+                    <time datetime="{{confirmacao.momento}}">{{confirmacao.momento}}</time>
+                </div>
+            </article>
+        </a>
+        {% endfor %}
+        {% #paginador pagina=minhas_confirmacoes hx-target="#lista-minhas-confirmacoes" hx-select="#lista-minhas-confirmacoes" %}
+    </div>
+</div>
+{% endblock conteudo %}

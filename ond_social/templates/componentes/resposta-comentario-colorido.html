@@ -1,0 +1,31 @@
+{% load static %}
+{% load components %}
+<div class="p-1 bg-neutral-50 text-sm">
+    <div class="flex gap-1 items-center">
+        <a class="link-padrao" href="{% url 'perfil:perfil' id_usuario=resposta.do_autor.pk %}">
+            {% if resposta.do_autor.foto %}
+            <div>
+                <img class="icon-perfil-p" src="{{resposta.do_autor.foto.url}}" alt="">
+            </div>
+            {% else %}
+            <div class="icon-perfil-p"></div>
+            {% endif %}
+        </a>
+        <div class="flex flex-col">
+            <span class="font-semibold"><a class="link-padrao"
+                    href="{% url 'perfil:perfil' id_usuario=resposta.do_autor.pk %}">{{resposta.do_autor.username}}</a></span>
+            <time class="text-xs text-gray-500"
+                datetime="{{comentario.momento | date:'d/m/Y H:i'}}">{{resposta.momento | timesince}}</time>
+        </div>
+    </div>
+    <div>
+        <div>
+            <p>{{resposta.corpo}}</p>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="flex justify-end">
+            {% #reacao_resposta_comentario resposta=resposta %}
+        </div>
+        {% endif %}
+    </div>
+</div>

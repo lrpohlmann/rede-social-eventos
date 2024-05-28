@@ -1,0 +1,68 @@
+<div class="flex flex-col gap-2">
+    <fieldset class="flex flex-col gap-1">
+        <legend class="text-lg font-semibold">Geral</legend>
+        <div class="flex flex-col gap-1">
+            {{formulario_criar_evento.nome.label_tag}}
+            {{formulario_criar_evento.nome}}
+            {% include 'componente/form/lista-erros.html' with erros=formulario_criar_evento.nome.errors only %}
+        </div>
+        <div class="flex flex-col gap-1">
+            {{formulario_criar_evento.capa.label_tag}}
+            {{formulario_criar_evento.capa}}
+            {% include 'componente/form/lista-erros.html' with erros=formulario_criar_evento.capa.errors only %}
+        </div>
+        <div class="flex flex-col gap-1">
+            {{formulario_criar_evento.tipo.label_tag}}
+            {{formulario_criar_evento.tipo}}
+            {% include 'componente/form/lista-erros.html' with erros=formulario_criar_evento.tipo.errors only %}
+        </div>
+        <div class="flex flex-col gap-1">
+            {{formulario_criar_evento.descricao.label_tag}}
+            {{formulario_criar_evento.descricao}}
+            {% include 'componente/form/lista-erros.html' with erros=formulario_criar_evento.descricao.errors only %}
+        </div>
+    </fieldset>
+    <fieldset class="grid grid-cols-2 gap-1">
+        <legend class="col-span-full text-lg font-semibold">Data e Hora</legend>
+        <div class="flex gap-1 flex-col">
+            {{formulario_criar_evento.data_inicio.label_tag}}
+            {{formulario_criar_evento.data_inicio}}
+            {% include 'componente/form/lista-erros.html' with erros=formulario_criar_evento.data_inicio.errors only %}
+        </div>
+        <div class="flex gap-1 flex-col">
+            {{formulario_criar_evento.hora_inicio.label_tag}}
+            {{formulario_criar_evento.hora_inicio}}
+            {% include 'componente/form/lista-erros.html' with erros=formulario_criar_evento.hora_inicio.errors only %}
+        </div>
+        <div class="flex gap-1 flex-col">
+            {{formulario_criar_evento.data_fim.label_tag}}
+            {{formulario_criar_evento.data_fim}}
+            {% include 'componente/form/lista-erros.html' with erros=formulario_criar_evento.data_fim.errors only %}
+        </div>
+        <div class="flex gap-1 flex-col">
+            {{formulario_criar_evento.hora_fim.label_tag}}
+            {{formulario_criar_evento.hora_fim}}
+            {% include 'componente/form/lista-erros.html' with erros=formulario_criar_evento.hora_fim.errors only %}
+        </div>
+    </fieldset>
+    <fieldset class="flex flex-col gap-1">
+        <legend class="text-lg font-semibold">Cidade</legend>
+        <div class="flex flex-col gap-1">
+            {{formulario_criar_evento.pesquisa_cidade.label_tag}}
+            {{formulario_criar_evento.pesquisa_cidade}}
+        </div>
+        <div class="flex gap-1 flex-col" id="cidade_container">
+            {{formulario_criar_evento.cidade.label_tag}}
+            {{formulario_criar_evento.cidade}}
+        </div>
+        {% include 'componente/form/lista-erros.html' with erros=formulario_criar_evento.cidade.errors only %}
+        <div class="flex flex-col gap-1">
+            {{formulario_criar_evento.endereco.label_tag}}
+            {{formulario_criar_evento.endereco}}
+            {% include 'componente/form/lista-erros.html' with erros=formulario_criar_evento.endereco.errors only %}
+        </div>
+    </fieldset>
+    <div>
+        <button class="btn-primario" type="submit" id="criar">Enviar</button>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+{% for value, label in opcoes %}
+{% if forloop.first %}
+<option value="{{value}}" selected>{{label}}</option>
+{% else %}
+<option value="{{value}}">{{label}}</option>
+{% endif %}
+{% endfor %}

@@ -1,0 +1,90 @@
+{% extends 'pagina/base.html' %}
+{% load static %}
+{% load components %}
+
+{% block titulo_pagina %}Ond é Hoje?{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="col-span-full flex justify-center md:block">
+	<h1 class="text-4xl">Ond hj?</h1>
+</div>
+<section class="col-span-full grid grid-cols-1 lg:grid-cols-6 gap-5" id="consulta-ond-e-hj">
+	<div class="col-span-1 lg:col-span-2">
+		<form id="form-consulta-ond-e-hj" hx-get="{% url 'pergunta:ond-e-hj' %}" hx-target="#consulta-ond-e-hj"
+			hx-swap="outerHTML" hx-select="#consulta-ond-e-hj" hx-disinherit="*"
+			_="on consultaOndHjEnviada call #resultado-consulta's scrollIntoView()">
+			<div class="flex flex-col gap-2">
+				<div class="pb-2 border-b border-gray-200">
+					<div class="container flex flex-col gap-1">
+						{{form_ond_e_hoje.nome.label_tag}}
+						{{form_ond_e_hoje.nome}}
+					</div>
+					{% include 'componente/form/lista-erros.html' with erros=form_ond_e_hoje.nome.errors only %}
+				</div>
+				<div class="pb-2 border-b border-gray-200">
+					<fieldset class="flex flex-col gap-1">
+						<div>
+							<legend class="text-lg font-semibold">Cidade</legend>
+						</div>
+						<div class="flex flex-col gap-1">
+							{{form_ond_e_hoje.pesquisa_cidade.label_tag}}
+							{{form_ond_e_hoje.pesquisa_cidade}}
+						</div>
+						<div class="flex flex-col gap-1" id="container-cidade">
+							{{form_ond_e_hoje.cidade.label_tag}}
+							{{form_ond_e_hoje.cidade}}
+						</div>
+						{% include 'componente/form/lista-erros.html' with erros=form_ond_e_hoje.cidade.errors only %}
+					</fieldset>
+				</div>
+				<div class="pb-2 border-b border-gray-200">
+					<div class="flex flex-col gap-1">
+						{{form_ond_e_hoje.tipo_evento.label_tag}}
+						{{form_ond_e_hoje.tipo_evento}}
+					</div>
+					{% include 'componente/form/lista-erros.html' with erros=form_ond_e_hoje.tipo_evento.errors only %}
+				</div>
+				<div class="pb-2 border-b border-gray-200">
+					<div class="flex flex-col gap-1">
+						{{form_ond_e_hoje.data_inicio.label_tag}}
+						{{form_ond_e_hoje.data_inicio}}
+
+					</div>
+					{% include 'componente/form/lista-erros.html' with erros=form_ond_e_hoje.data_inicio.errors only %}
+				</div>
+				<div class="pb-2 border-b border-gray-200">
+					<div class="flex flex-col gap-1">
+						{{form_ond_e_hoje.ordenacao.label_tag}}
+						{{form_ond_e_hoje.ordenacao}}
+					</div>
+					{% include 'componente/form/lista-erros.html' with erros=form_ond_e_hoje.ordenacao.errors only %}
+				</div>
+				<div class="flex">
+					<button type="submit" id="procurar" class="btn-primario">Consultar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="col-span-1 lg:col-span-4" id="resultado-consulta">
+		{% if eventos_encontrados %}
+		<div>
+			<h2 class="text-3xl">X eventos encontrados</h2>
+		</div>
+		<nav>
+			{% paginador pagina=eventos_encontrados hx-target="#consulta-ond-e-hj" hx-select="#consulta-ond-e-hj" hx-include="#form-consulta-ond-e-hj [name]" hx-replace-url="true" %}{% endpaginador %}
+		</nav>
+		<output class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3"
+			form_id="form-consulta-ond-e-hj">
+			{% for evento in eventos_encontrados %}
+
+			{% card_ondevento evento=evento %}{% endcard_ondevento %}
+
+			{% endfor %}
+		</output>
+		<nav>
+			{% paginador pagina=eventos_encontrados hx-target="#consulta-ond-e-hj" hx-select="#consulta-ond-e-hj" hx-include="#form-consulta-ond-e-hj [name]" hx-replace-url="true" %}{% endpaginador %}
+		</nav>
+		{% endif %}
+	</div>
+</section>
+{% endblock conteudo %}

@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        @apply focus:outline focus:outline-2 focus:outline-primaria-light;
+    }
+}
+
+@layer components {
+
+    /* BOTAO */
+    .btn-base {
+        @apply border rounded-lg px-3 py-1 font-bold hover:brightness-125 active:outline-none active:brightness-90;
+    }
+
+    .btn-padrao {
+        @apply btn-base bg-gray-500 text-white border-l-gray-400 border-t-gray-400 border-r-gray-700 border-b-gray-700 active:border-r-gray-400 active:border-b-gray-400 active:border-l-gray-700 active:border-t-gray-700;
+    }
+
+    .btn-padrao-p {
+        @apply btn-padrao text-xs;
+    }
+
+    .btn-primario {
+        @apply btn-base bg-primaria border-t-primaria-light border-l-primaria-light border-r-primaria-dark border-b-primaria-dark text-white active:border-b-primaria-light active:border-r-primaria-light active:border-l-primaria-dark active:border-t-primaria-dark;
+    }
+
+    .btn-primario-p {
+        @apply btn-primario text-xs;
+    }
+
+    .btn-sucesso {
+        @apply btn-base bg-sucesso text-white;
+    }
+
+    .btn-perigo {
+        @apply btn-base bg-perigo border-l-perigo-light border-t-perigo-light border-r-perigo-dark border-b-perigo-dark text-white active:border-r-perigo-light active:border-b-perigo-light active:border-l-perigo-dark active:border-t-perigo-dark;
+    }
+
+    .btn-perigo-p {
+        @apply btn-perigo text-xs;
+    }
+
+    /* LINK */
+    .link-base {
+        @apply font-medium hover:underline hover:brightness-110;
+    }
+
+    .link-padrao {
+        @apply link-base text-primaria-light hover:text-primaria hover:underline;
+    }
+
+    .link-perigo {
+        @apply link-base text-perigo-light hover:text-perigo;
+    }
+
+    .link-btn-padrao {
+        @apply link-base btn-padrao;
+    }
+
+    .link-btn-padrao-p {
+        @apply link-base btn-padrao-p;
+    }
+
+    /* OUTROS */
+    .icon-perfil-p {
+        @apply border-primaria border-2 rounded-full w-8 h-8 object-cover;
+    }
+
+    .icon-perfil {
+        @apply border-primaria border-2 rounded-full w-10 h-10 object-cover;
+    }
+
+    .pilula-confirmado {
+        @apply bg-sucesso border border-sucesso text-white font-bold rounded-sm px-3 py-1 text-xs flex justify-between gap-1 items-center;
+    }
+}

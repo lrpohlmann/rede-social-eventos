@@ -1,0 +1,37 @@
+{% load static %}
+{% load components %}
+
+<section class="flex flex-col gap-5" id="comentarios-ondevento">
+    <h2 class="text-xl">
+        Comentários
+    </h2>
+    <div class="flex flex-col flex-nowrap gap-5" id="lista-comentarios">
+        {% for comentario in comentarios_do_evento %}
+        {% #conversa comentario=comentario %}
+        {% endfor %}
+        {% if comentarios_do_evento %}
+
+        {% url 'evento:comentarios_do_ondevento' id_ondevento=ondevento.pk as url_comentarios %}
+        {% #paginador pagina=comentarios_do_evento url_get=url_comentarios hx-target="#comentarios-ondevento" %}
+
+        {% endif %}
+    </div>
+    {% if user.is_authenticated %}
+    <div class="sticky bottom-0 left-0 pt-1 bg-white bg-opacity-75">
+        <form hx-post="{% url 'social:comentar_evento' id_ondevento=ondevento.pk %}" hx-target="#lista-comentarios"
+            hx-swap="afterbegin">
+            <div class="flex flex-col gap-1">
+                <h3 class="text-lg">Enviar Comentário</h3>
+                <div class="flex justify-center">
+                    {{comentario_form.corpo}}
+                </div>
+                <div>
+                    <button class="btn-padrao" id="enviar_comentario_evento" type="submit">
+                        Enviar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+</section>

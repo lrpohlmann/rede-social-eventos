@@ -1,0 +1,33 @@
+{% load static %}
+<div class="flex gap-2 rounded-lg px-1" id="area-reacao-{{comentario.pk}}">
+    {% if usuario_reagiu %}
+    <button class="btn-perigo-p h-6" type="submit"
+        hx-delete="{% url 'social:reagir_ao_comentario' id_comentario=comentario.pk %}"
+        hx-target="#area-reacao-{{comentario.pk}}" hx-swap="outerHTML">
+        Remover
+    </button>
+    {% endif %}
+    <div class="hidden" data-elemento="opcoes-reacao-comentario">
+        <form hx-post="{% url 'social:reagir_ao_comentario' id_comentario=comentario.pk %}"
+            hx-target="#area-reacao-{{comentario.pk}}" hx-swap="outerHTML">
+            <div class="flex gap-2">
+                <input type="hidden" id="campo_reacao_{{comentario.pk}}" name="reacao" value="">
+                <button class="rounded-lg" type="submit" data-reacao="UTIL"
+                    _="on click set #campo_reacao_{{comentario.pk}}.value to my [@data-reacao]">
+                    <img class="w-6 h-6" src="{% static 'svg/util.svg' %}" alt="">
+                </button>
+                <button class="rounded-lg" type="submit" data-reacao="LIKE"
+                    _="on click set #campo_reacao_{{comentario.pk}}.value to my [@data-reacao]">
+                    <img class="w-6 h-6" src="{% static 'svg/like-cheio.svg' %}" alt="">
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="flex items-end">
+        <button class="rounded-lg"
+            _="on click toggle .hidden on the previous <[data-elemento=opcoes-reacao-comentario]/> then toggle .bg-gray-200 on #area-reacao-{{comentario.pk}}"
+            data-elemento="botao-reacao-comentario">
+            <img class="w-6 h-6" src="{% static svg_icon %}" alt="" data-elemento="reacao-comentario">
+        </button>
+    </div>
+</div>

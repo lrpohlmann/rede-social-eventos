@@ -1,0 +1,24 @@
+{% extends 'pagina/base.html' %}
+{% load components %}
+
+{% block titulo_pagina %}Meus Eventos | OND{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-6 lg:col-start-4 flex flex-col gap-5">
+    <nav>
+        <a class="link-padrao" href="{% url 'perfil:menu_principal_perfil' %}">Voltar</a>
+    </nav>
+    <div>
+        <h1 class="text-4xl">Meus Eventos</h1>
+    </div>
+    <div id="lista-meus-eventos" class="flex flex-col gap-3">
+        {% #paginador pagina=meus_eventos hx-target="#lista-meus-eventos" hx-select="#lista-meus-eventos" %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {% for evento in meus_eventos %}
+            {% card_ondevento evento=evento %}{% endcard_ondevento %}
+            {% endfor %}
+        </div>
+        {% #paginador pagina=meus_eventos hx-target="#lista-meus-eventos" hx-select="#lista-meus-eventos" %}
+    </div>
+</div>
+{% endblock conteudo %}

@@ -1,0 +1,7 @@
+{% if not usuario_presenca_confirmada %}
+<button class="btn-primario-p" hx-post="{% url 'social:confirmar_presenca' id_ondevento=ondevento.pk %}"
+    hx-swap="outerHTML" type="button" id="confirmar-presenca">Confirmar Presença</button>
+{% else %}
+<button class="btn-padrao-p" hx-post="{% url 'social:desconfirmar_presenca' id_ondevento=ondevento.pk %}"
+    hx-swap="outerHTML" type="button" id="desconfirmar-presenca">Desconfirmar Presença</button>
+{% endif %}

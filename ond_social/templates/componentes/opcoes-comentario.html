@@ -1,0 +1,4 @@
+{% if deletar %}
+<button class="btn-perigo" type="button" hx-post="{% url 'social:deletar_comentario' id_comentario=comentario.pk %}"
+    hx-swap="delete" hx-target="closest [data-elemento=conversa]">Deletar</button>
+{% endif %}

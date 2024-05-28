@@ -1,0 +1,71 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo_pagina %}Ond{% endblock titulo_pagina %}</title>
+    <link rel="shortcut icon" type="image/ico" href="{% static 'favicon/ond.ico' %}">
+
+    <script src="{% static 'js/htmx.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+    <script src="{% static 'js/_hyperscript.min.js' %}"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body
+    class="min-h-screen mx-5 sm:mx-10 md:mx-20 font-primaria selection:bg-primaria selection:text-white flex flex-col gap-5"
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    {% block header %}
+    <header class="border-b px-8 pb-4 pt-4">
+        <nav class="flex justify-between">
+            <div class="flex items-center">
+                <a class="block" href="{% url 'pergunta:ond-e-hj' %}"><img class="w-24"
+                        src="{% static 'svg/ond-logo.svg' %}" alt="" /></a>
+            </div>
+            <div class="grow flex justify-end gap-3">
+                <div class="flex flex-col justify-center" style="width: 1.8rem;">
+                    <a href="{% url 'evento:criar_ondevento' %}">
+                        <img src="{% static 'svg/add-evento.svg' %}" alt="" />
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <div hx-get="{% url 'notificacao:verificar_notificacao_header' %}" hx-trigger="load"
+                    hx-swap="outerHTML"></div>
+                {% endif %}
+
+                {% if not user.is_authenticated %}
+                <div class="flex flex-col justify-center">
+                    <a class="link-padrao" href="{% url 'conta:login' %}" id="login">Login</a>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <a class="link-padrao" href="{% url 'conta:criar' %}" id="criar">Criar Conta</a>
+                </div>
+                {% else %}
+                <div class="flex flex-col justify-center">
+                    <a href="{% url 'perfil:menu_principal_perfil' %}" id="menu-principal">
+                        {% if user.foto %}
+                        <img class="icon-perfil" src="{{user.foto.url}}" alt="">
+                        {% else %}
+                        <div class="border rounded-full w-8 h-8 bg-secundaria"></div>
+                        {%endif %}
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+    {% endblock header %}
+    <main class="grid grid-cols-1 lg:grid-cols-12">
+        {% block conteudo %}{% endblock conteudo %}
+    </main>
+</body>
+
+</html>

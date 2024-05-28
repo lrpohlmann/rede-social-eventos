@@ -1,0 +1,11 @@
+{% with id=widget.attrs.id %}
+<div class="flex flex-row gap-2 py-2 overflow-x-auto" {% if id %} id="{{ id }}" {% endif %}>
+        {% for group, options, index in widget.optgroups %}
+        {% for option in options %}
+        <div class="border border-gray-400 rounded-full px-3 text-sm flex flex-nowrap gap-1 bg-gray-200">
+                {% include option.template_name with widget=option %}
+        </div>
+        {% endfor %}
+        {% endfor %}
+</div>
+{% endwith %}

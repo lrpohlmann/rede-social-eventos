@@ -1,0 +1,30 @@
+<div class="flex gap-3 justify-center items-center">
+    {% if pagina.has_previous %}
+    <div class="">
+        <a class="border border-secundaria-light rounded-full font-bold text-white text-sm bg-secundaria-light px-3 py-1"
+            href="?pagina=1" hx-get="{{url_get}}?pagina=1" hx-swap="outerHTML" {{attributes}}>1</a>
+    </div>
+    <div class="">
+        <a class="border border-secundaria-light rounded-full font-bold text-white text-sm bg-secundaria-light px-3 py-1"
+            href="?pagina={{ pagina.previous_page_number }}"
+            hx-get="{{url_get}}?pagina={{ pagina.previous_page_number }}" hx-swap="outerHTML" {{attributes}}>&lt</a>
+    </div>
+    {% endif %}
+
+    <div class="border rounded-sm font-bold text-white text-sm bg-secundaria-dark px-3 py-1">
+        Página {{ pagina.number }} de {{ pagina.paginator.num_pages }}
+    </div>
+
+    {% if pagina.has_next %}
+    <div class="">
+        <a class="border border-secundaria-light rounded-full font-bold text-white text-sm bg-secundaria-light px-3 py-1"
+            href="?pagina={{ pagina.next_page_number }}" hx-get="{{url_get}}?pagina={{ pagina.next_page_number }}"
+            hx-swap="outerHTML" {{attributes}}>&gt</a>
+    </div>
+    <div class="">
+        <a class="border border-secundaria-light rounded-full font-bold text-white text-sm bg-secundaria-light px-3 py-1"
+            href="?pagina={{ pagina.paginator.num_pages }}" hx-get="{{url_get}}?pagina={{ pagina.paginator.num_pages }}"
+            hx-swap="outerHTML" {{attributes}}>{{ pagina.paginator.num_pages }}</a>
+    </div>
+    {% endif %}
+</div>

@@ -1,0 +1,50 @@
+{% extends 'pagina/base.html' %}
+
+{% block titulo_pagina %}Criar Conta | OND{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-6 lg:col-start-4 flex flex-col items-center gap-5">
+    <div class="">
+        <h1 class="text-4xl">Criar Conta</h1>
+    </div>
+    <div>
+        <form hx-post="{% url 'conta:criar' %}" hx-swap="none">
+            <div class="flex flex-col gap-2">
+                {% csrf_token %}
+                <div class="flex flex-col gap-1">
+                    {{criar_conta_form.email.label_tag}}
+                    <div class="flex md:block">
+                        {{criar_conta_form.email}}
+                    </div>
+                    {% include 'componente/form/lista-erros.html' with erros=criar_conta_form.email.errors %}
+                </div>
+                <div class="flex flex-col gap-1">
+                    {{criar_conta_form.username.label_tag}}
+                    <div class="flex md:block">
+                        {{criar_conta_form.username}}
+                    </div>
+                    {% include 'componente/form/lista-erros.html' with erros=criar_conta_form.username.errors %}
+                </div>
+                <div class="flex flex-col gap-1">
+                    {{criar_conta_form.password1.label_tag}}
+                    <div class="flex md:block">
+                        {{criar_conta_form.password1}}
+                    </div>
+                    {% include 'componente/form/lista-erros.html' with erros=criar_conta_form.password1.errors %}
+                </div>
+                <div class="flex flex-col gap-1">
+                    {{criar_conta_form.password2.label_tag}}
+                    <div class="flex md:block">
+                        {{criar_conta_form.password2}}
+                    </div>
+                    {% include 'componente/form/lista-erros.html' with erros=criar_conta_form.password2.errors %}
+                </div>
+                <div>
+                    <button class="btn-primario" type="submit">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock conteudo %}

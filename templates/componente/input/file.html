@@ -1,0 +1,6 @@
+<div class="flex gap-1">
+    <input
+        class="grow border rounded-full px-3 py-1 bg-gray-500 text-white font-bold border-gray-400 disabled:opacity-25"
+        type="{{ widget.type }}" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %}>
+    <button class="btn-perigo" type="button" _="on click set the value of previous <input/> to ''">Limpar</button>
+</div>

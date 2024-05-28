@@ -1,0 +1,31 @@
+{% extends 'pagina/base.html' %}
+{% load static %}
+{% load components %}
+
+{% block titulo_pagina %}Conversa | Ond{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-6 lg:col-start-4 grid grid-cols-1 items-center gap-5"
+    _="on comentarioDeletado from <body/> js window.location.replace('{% url 'evento:ondevento_home' id_ondevento=comentario.no_evento.pk %}') end">
+    <div>
+        <a class="link-padrao" href="{% url 'evento:ondevento_home' id_ondevento=comentario.no_evento.pk %}">Voltar</a>
+    </div>
+    <div class="text-center">
+        <h1 class="text-4xl">Ver Conversa</h1>
+    </div>
+    <div class="flex flex-col flex-nowrap gap-3">
+        {% #conversa comentario=comentario %}
+        <div class="sticky bottom-0 left-0 pt-1 bg-white bg-opacity-75">
+            <!-- TODO: correção hx-target -->
+            <form action="{% url 'social:responder_comentario' id_comentario=comentario.pk %}" method="post"
+                hx-post="{% url 'social:responder_comentario' id_comentario=comentario.pk %}"
+                hx-target="#lista-repostas" hx-swap="beforeend">
+                <div class="flex flex-col gap-1">
+                    {{form.corpo}}
+                    <button class="btn-padrao" type="submit">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock conteudo %}

@@ -1,0 +1,64 @@
+{% extends 'pagina/base.html' %}
+{% load components %}
+
+{% block titulo_pagina %}Convites | OND{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-6 lg:col-start-4 flex flex-col gap-5">
+    <nav>
+        <a href="{% url 'perfil:menu_principal_perfil' %}">Voltar</a>
+    </nav>
+    <div>
+        <h1 class="text-4xl">Convites</h1>
+    </div>
+    <div class="flex gap-3">
+        <label>
+            Recebidos
+            <input _="on click set #tipo_convite.value to my value" hx-get="?tipo_convite=recebido"
+                hx-target="#lista-convites" hx-trigger="click" hx-replace-url="true" hx-swap="outerHTML"
+                hx-select="#lista-convites" hx-params="not radio-tipo" type="radio" name="radio-tipo" value="recebido"
+                {% if request.GET.tipo_convite != "enviado" %} checked="" {% endif %}>
+        </label>
+        <label>
+            Enviados
+            <input _="on click set #tipo_convite.value to my value" hx-get="?tipo_convite=enviado"
+                hx-target="#lista-convites" hx-trigger="click" hx-replace-url="true" hx-swap="outerHTML"
+                hx-select="#lista-convites" hx-params="not radio-tipo" type="radio" name="radio-tipo" value="enviado"
+                {% if request.GET.tipo_convite == "enviado" %} checked="" {% endif %}>
+        </label>
+        <input type="hidden" id="tipo_convite" name="tipo_convite">
+    </div>
+    <div class="flex flex-col gap-3" id="lista-convites">
+        <h2>
+            {% if request.GET.tipo_convite == "enviado" %}
+            Enviados
+            {% else %}
+            Recebidos
+            {% endif %}
+        </h2>
+        {% for convite in lista_convites %}
+        <a href="{% url 'evento:ondevento_home' id_ondevento=convite.evento.pk %}">
+            <article class="min-w-0">
+                <div>
+                    <h3 class="text-ellipsis overflow-x-hidden whitespace-nowrap">
+                        {{convite.evento.nome}}
+                    </h3>
+                </div>
+                <div>
+                    <ul>
+                        <li class="text-ellipsis overflow-x-hidden whitespace-nowrap">De: {{convite.de.username}}</li>
+                        <li class="text-ellipsis overflow-x-hidden whitespace-nowrap">Para: {{convite.para.username}}
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <span>Data do convite:</span>
+                    <time datetime="{{convite.momento}}">{{convite.momento}}</time>
+                </div>
+            </article>
+        </a>
+        {% endfor %}
+        {% #paginador pagina=lista_convites hx-target="#lista-convites" hx-select="#lista-convites" hx-include="#tipo_convite" hx-replace-url="true" %}
+    </div>
+</div>
+{% endblock conteudo %}

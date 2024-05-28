@@ -1,0 +1,14 @@
+<div data-convidar-container="">
+    {% if situacao_para_convite == "ABERTO" %}
+    <button class="btn-padrao-p" type="button"
+        hx-post="{% url 'social:convidar_para_ondevento' id_ondevento=ondevento.pk id_convidado=seguidor.pk%}"
+        hx-target="closest [data-convidar-container]" hx-swap="innerHTML"
+        hx-confirm="Convidar {{seguidor.username}}?">Convidar...</button>
+    {% elif situacao_para_convite == "CONVIDADO" %}
+    <button class="btn-perigo-p" type="button"
+        hx-post="{% url 'social:desconvidar_para_ondevento' id_ondevento=ondevento.pk id_convidado=seguidor.pk%}"
+        hx-target="closest [data-convidar-container]" hx-swap="innerHTML">Desconvidar</button>
+    {% elif situacao_para_convite == "PRESENTE" %}
+    <div class="pilula-confirmado">Confirmado</div>
+    {% endif %}
+</div>

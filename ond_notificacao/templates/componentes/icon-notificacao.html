@@ -1,0 +1,11 @@
+{% load static %}
+<div class="flex flex-col justify-center w-6" hx-get="{% url 'notificacao:verificar_notificacao_header' %}"
+    hx-trigger="every 60s, todasNotificacoesVistas from:body" hx-swap="outerHTML">
+    <a href="{% url 'notificacao:minhas_notificacoes' %}">
+        {% if notificacao_nao_vista %}
+        <img src="{% static 'svg/notif-cheio.svg' %}" alt="" />
+        {% else %}
+        <img src="{% static 'svg/notif-vazio.svg' %}" alt="" />
+        {% endif %}
+    </a>
+</div>

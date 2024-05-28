@@ -1,0 +1,42 @@
+{% extends 'pagina/base.html' %}
+
+{% block titulo_pagina %}Menu Usuário | OND{% endblock titulo_pagina %}
+
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-3 flex flex-col gap-5">
+    <div>
+        <h1 class="text-4xl">Menu</h1>
+    </div>
+    <nav class="flex flex-col">
+        <div>
+            <h2 class="text-2xl">Perfil</h2>
+        </div>
+        <div>
+            <a class="link-padrao" href="{% url 'perfil:perfil' id_usuario=usuario.pk %}">Meu
+                Perfil</a>
+        </div>
+        <div>
+            <a class="link-padrao" href="{% url 'perfil:editar_perfil' %}">Editar Perfil</a>
+        </div>
+        <div>
+            <h2 class="text-2xl">Minhas Atividades</h2>
+        </div>
+        <div>
+            <a class="link-padrao" href="{% url 'perfil:meus_eventos' %}">Meus Eventos</a>
+        </div>
+        <div>
+            <a class="link-padrao" href="{% url 'perfil:minhas_confirmacoes_de_presenca' %}">Confirmações de
+                Presença</a>
+        </div>
+        <div>
+            <a class="link-padrao" href="{% url 'perfil:meus_convites' %}">Convites Recebidos</a>
+        </div>
+        <div>
+            <h2 class="text-2xl">Conta</h2>
+        </div>
+        <div>
+            <a class="link-perigo" hx-post="{% url 'conta:logout' %}" hx-swap="none">Logout</a>
+        </div>
+    </nav>
+</div>
+{% endblock conteudo %}

@@ -1,0 +1,19 @@
+<!-- noformat -->
+{% extends 'pagina/base.html' %} {% block titulo_pagina %}Criar Evento | OND{%endblock titulo_pagina %}
+<!-- noformat -->
+{% block conteudo %}
+<div class="col-span-1 lg:col-span-6 lg:col-start-4 flex flex-col items-center gap-5">
+    <div class="container text-center">
+        <h1 class="text-4xl">Editar Evento</h1>
+    </div>
+    <div class="flex flex-col gap-5">
+        <!--noformat-->
+        <form action="{% url 'evento:editar_ondevento' id_ondevento=ondevento.pk %}" method="post"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include 'fragmentos/form-manipular-ondevento.html' with formulario_criar_evento=form_editar_evento only %}
+        </form>
+        <!--noformat-->
+    </div>
+</div>
+{% endblock conteudo %}

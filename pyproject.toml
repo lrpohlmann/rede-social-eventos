@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "ond-app"
+version = "0.1.0"
+description = ""
+authors = ["lrpohlmann <52549897+lrpohlmann@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{ include = "ond_app" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+Django = "^4.2.4"
+django-environ = "^0.11.2"
+pillow = "^10.1.0"
+django-web-components = "^0.2.0"
+
+[tool.poetry.group.dev.dependencies]
+model-bakery = "^1.15.0"
+parameterized = "^0.9.0"
+black = "^23.9.1"
+django-stubs = { extras = ["compatible-mypy"], version = "^4.2.6" }
+django-test-plus = "^2.2.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+plugins = ["mypy_django_plugin.main"]
+
+[tool.django-stubs]
+django_settings_module = "ond.settings"

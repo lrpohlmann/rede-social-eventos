@@ -1,0 +1,9 @@
+{% if erros %}
+<div class="text-sm text-red-500">
+    <ul class="list-inside list-disc">
+        {% for erro_individual in erros %}
+        <li>{{erro_individual}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
