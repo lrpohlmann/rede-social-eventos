@@ -1,5 +1,8 @@
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
+from pathlib import Path
+
+from django.conf import settings
 
 DADOS_EVENTOS = [
     {
@@ -151,7 +154,7 @@ DADOS_EVENTOS = [
     },
     {
         "nome": "Show Rock na Redenção",
-        "capa": "url_para_capa_do_evento_rock_redencao.jpg",
+        "capa": settings.BASE_DIR / "utils_teste/media/redenção.png",
         "tipo": "SHOW",
         "inicio": datetime.now(tz=ZoneInfo("America/Sao_Paulo")) + timedelta(30),
         "fim": datetime.now(tz=ZoneInfo("America/Sao_Paulo")) + timedelta(30, hours=6),

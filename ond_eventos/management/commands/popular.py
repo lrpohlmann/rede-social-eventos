@@ -1,6 +1,8 @@
 from typing import Any
+from pathlib import Path
 from django.core.management import BaseCommand
 from django.db import transaction
+from django.core.files import File
 
 from ond_eventos.models import OndEvento, Cidade
 from ond_perfil.models import User
@@ -34,6 +36,12 @@ class Command(BaseCommand):
                 endereco=EVENTO["endereco"],
             )
             evento.save()
+
+            if (capa := EVENTO.get("capa")) and (isinstance(capa, Path)):
+                with capa.open(mode="rb") as f:
+                    evento.capa = File(f, capa.name)
+                    evento.save()
+
             print("#####Evento criado")
 
             for comentario in EVENTO["comentarios"]:
