@@ -221,8 +221,8 @@ DADOS_EVENTOS = [
         "nome": "Noite de Observação de Estrelas e Contos de Fadas",
         "capa": "url_para_capa_do_evento_estrelas_contos.jpg",
         "tipo": "CULT",
-        "inicio": datetime(2024, 5, 13, 20, 0, tzinfo=ZoneInfo("America/Sao_Paulo")),
-        "fim": datetime(2024, 5, 14, 1, 0, tzinfo=ZoneInfo("America/Sao_Paulo")),
+        "inicio": datetime.now(tz=ZoneInfo("America/Sao_Paulo")) + timedelta(60),
+        "fim": datetime.now(tz=ZoneInfo("America/Sao_Paulo")) + timedelta(60, hours=12),
         "descricao": "Uma noite mágica onde a astronomia encontra a fantasia. Traga seu cobertor e prepare-se para histórias sob um céu estrelado!",
         "autor": {
             "password": "senha_do_roberto",
@@ -289,8 +289,8 @@ DADOS_EVENTOS = [
         "nome": "Rolê de Rua no Bar do JaJa",
         "capa": "url_para_capa_do_evento_bar_jaja.jpg",
         "tipo": "ROLE",
-        "inicio": datetime(2024, 4, 8, 19, 0, tzinfo=ZoneInfo("America/Sao_Paulo")),
-        "fim": datetime(2024, 4, 8, 23, 59, tzinfo=ZoneInfo("America/Sao_Paulo")),
+        "inicio": datetime.now(tz=ZoneInfo("America/Sao_Paulo")) + timedelta(7),
+        "fim": datetime.now(tz=ZoneInfo("America/Sao_Paulo")) + timedelta(7, hours=8),
         "descricao": "Venha curtir uma noite animada com boa música e ótimos drinks no Bar do JaJa!",
         "autor": {
             "password": "tiago_eco27",
@@ -357,8 +357,9 @@ DADOS_EVENTOS = [
         "nome": "Feira Cultural de Porto Alegre",
         "capa": "url_para_capa_da_feira_cultural.jpg",
         "tipo": "CULT",
-        "inicio": datetime(2024, 3, 5, 10, 0, tzinfo=ZoneInfo("America/Sao_Paulo")),
-        "fim": datetime(2024, 3, 5, 18, 0, tzinfo=ZoneInfo("America/Sao_Paulo")),
+        "inicio": datetime.now(tz=ZoneInfo("America/Sao_Paulo"))
+        + timedelta(14, hours=7),
+        "fim": datetime.now(tz=ZoneInfo("America/Sao_Paulo")) + timedelta(14, hours=13),
         "descricao": "Explore a rica cultura de Porto Alegre com artesanato, música e gastronomia local!",
         "autor": {
             "password": "beatrizlvr",
@@ -425,8 +426,8 @@ DADOS_EVENTOS = [
         "nome": "Bloco de Carnaval Alegria na Rua",
         "capa": "url_para_capa_do_evento_carnaval_alegria.jpg",
         "tipo": "BLOQ",
-        "inicio": datetime(2024, 2, 10, 14, 0, tzinfo=ZoneInfo("America/Sao_Paulo")),
-        "fim": datetime(2024, 2, 10, 22, 0, tzinfo=ZoneInfo("America/Sao_Paulo")),
+        "inicio": datetime.now(tz=ZoneInfo("America/Sao_Paulo")) + timedelta(1),
+        "fim": datetime.now(tz=ZoneInfo("America/Sao_Paulo")) + timedelta(1, hours=12),
         "descricao": "Junte-se a nós para celebrar o carnaval com muita música, dança e alegria pelas ruas!",
         "autor": {
             "password": "rafa_dev2023",
