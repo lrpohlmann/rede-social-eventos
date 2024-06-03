@@ -1,5 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import redirect
 
 
 def home_view(request):
-    return render(request, "pagina/home.html")
+    return redirect("pergunta:ond-e-hj")
