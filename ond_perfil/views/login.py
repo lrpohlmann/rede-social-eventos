@@ -7,7 +7,7 @@ from ond_perfil.forms import LoginForm
 
 def login_view(request: HttpRequest):
     if request.user.is_authenticated:
-        return redirect("pergunta:ond-e-hj")
+        return redirect("ond-e-hj")
 
     login_form = LoginForm()
     if request.method == "POST":
@@ -19,6 +19,6 @@ def login_view(request: HttpRequest):
                 password=login_form.cleaned_data.get("senha"),
             ):
                 login(request, usuario_autenticado)
-                return redirect("pergunta:ond-e-hj")
+                return redirect("ond-e-hj")
 
     return render(request, "pagina/login.html", context={"login_form": login_form})

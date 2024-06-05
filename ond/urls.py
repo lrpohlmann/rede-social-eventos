@@ -28,7 +28,7 @@ urlpatterns = [
     path("", home_view, name="home"),
     path("admin/", admin.site.urls),
     path("perfil/", include("ond_perfil.urls", "perfil")),
-    path("ond-e-hj/", include("ond_eventos.urls_ond_hj", "pergunta")),
+    path("ond-e-hj/", include("ond_eventos.urls_ond_hj")),
     path("evento/", include("ond_eventos.urls_evento", "evento")),
     path("social/", include("ond_social.urls", "social")),
     path("notificacao/", include("ond_notificacao.urls", "notificacao")),

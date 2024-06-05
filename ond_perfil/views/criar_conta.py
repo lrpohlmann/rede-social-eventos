@@ -6,7 +6,7 @@ from ond_perfil.forms import CriarContaForm
 
 def criar_conta_view(request: HttpRequest):
     if request.user.is_authenticated:
-        return redirect("pergunta:ond-e-hj")
+        return redirect("ond-e-hj")
 
     criar_conta_form = CriarContaForm()
     if request.method == "POST":

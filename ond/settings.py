@@ -164,7 +164,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "ond_perfil.User"
 AUTHENTICATION_BACKENDS = ["ond_perfil.backend.AutenticacaoOnd"]
 SITE_ID = 1
-LOGIN_REDIRECT_URL = "pergunta:ond-e-hj"
+LOGIN_REDIRECT_URL = "ond-e-hj"
 LOGIN_URL = "/conta/login"
 
 import warnings

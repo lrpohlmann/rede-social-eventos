@@ -11,7 +11,7 @@ from utils_teste.recipes import ondevento_recipe
 
 class OndeEHojeViewTeste(TestCase):
     def setUp(self):
-        self.url = "pergunta:ond-e-hj"
+        self.url = "ond-e-hj"
         self.resposta = self.get(self.url)
         return super().setUp()
 
@@ -27,7 +27,7 @@ class GetOndeEHojeComParametrosViewTeste(TestCase):
         cidade = baker.make(Cidade)
         ondevento_recipe.make(cidade=cidade, _quantity=10)
 
-        self.url = "pergunta:ond-e-hj"
+        self.url = "ond-e-hj"
         self.resposta = self.get(
             self.url,
             data={
