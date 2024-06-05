@@ -12,7 +12,7 @@ from ._dados import DADOS_EVENTOS
 
 
 class Command(BaseCommand):
-    # @transaction.atomic
+    @transaction.atomic
     def handle(self, *args: Any, **options: Any) -> str | None:
         for EVENTO in DADOS_EVENTOS:
             try:

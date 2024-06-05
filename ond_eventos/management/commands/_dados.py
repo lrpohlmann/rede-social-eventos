@@ -358,7 +358,7 @@ DADOS_EVENTOS = [
     },
     {
         "nome": "Feira Cultural de Porto Alegre",
-        "capa": "url_para_capa_da_feira_cultural.jpg",
+        "capa": settings.BASE_DIR / "utils_teste/media/redencao2.jpg",
         "tipo": "CULT",
         "inicio": datetime.now(tz=ZoneInfo("America/Sao_Paulo"))
         + timedelta(14, hours=7),
