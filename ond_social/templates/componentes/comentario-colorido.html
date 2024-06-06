@@ -3,13 +3,13 @@
 <div class="flex flex-col p-1 bg-neutral-100 border rounded-md" data-elemento="card-comentario">
     <div>
         <div class="flex gap-1 items-center">
-            {% if comentario.do_autor.foto %}
+            <!-- {% if comentario.do_autor.foto %}
             <a href="{% url 'perfil:perfil' id_usuario=comentario.do_autor.pk %}">
                 <div>
                     <img class="icon-perfil-p" src="{{comentario.do_autor.foto.url}}" alt="">
                 </div>
             </a>
-            {% endif %}
+            {% endif %} -->
             <div class="flex flex-col">
                 <span><a class="link-padrao"
                         href="{% url 'perfil:perfil' id_usuario=comentario.do_autor.pk %}">{{comentario.do_autor.username}}</a></span>

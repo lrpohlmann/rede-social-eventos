@@ -2,13 +2,13 @@
 {% load components %}
 <div class="p-1 bg-neutral-50 text-sm">
     <div class="flex gap-1 items-center">
-        {% if resposta.do_autor.foto %}
+        <!-- {% if resposta.do_autor.foto %}
         <a class="link-padrao" href="{% url 'perfil:perfil' id_usuario=resposta.do_autor.pk %}">
             <div>
                 <img class="icon-perfil-p" src="{{resposta.do_autor.foto.url}}" alt="">
             </div>
         </a>
-        {% endif %}
+        {% endif %} -->
         <div class="flex flex-col">
             <span class="font-semibold"><a class="link-padrao"
                     href="{% url 'perfil:perfil' id_usuario=resposta.do_autor.pk %}">{{resposta.do_autor.username}}</a></span>
