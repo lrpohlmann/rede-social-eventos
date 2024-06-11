@@ -1,6 +1,11 @@
-Este projeto é protótipo de uma de rede social voltado para eventos chamado Ond.
-Essa rede viria com o objeto de suprir uma lacuna que existe na divulgação de eventos, tanto "oficiais" como "não-oficiais". Essa lacuna é formada por dois fatos: (1) a diminuição do uso do Facebook, que tinha a secção de eventos, e (2) a subsequente fragmentação da informação do que tem "pra fazer por aí". Para se buscar essa informação se depende do boca-a-boca ou seguir perfis específicos no Whatsapp ou Instagram.
-O Ond seria onde (rsrsrs) o público criaria e procuraria eventos que existem na cidade, ampliando a divulgação da informação além de circuitos menores.
+Este projeto é protótipo de uma de rede social voltado para eventos chamado **Ond**.
+
+Essa rede viria com o objeto de suprir uma lacuna que existe na divulgação de eventos, tanto "oficiais" como "não-oficiais". Essa lacuna é se deu por dois fatos:
+
+1. a diminuição do uso do Facebook, que tinha a secção de eventos;
+2. a subsequente fragmentação da informação do que tem "pra fazer por aí". Para se buscar essa informação se depende do boca-a-boca ou seguir perfis específicos no Whatsapp ou Instagram.
+
+O **Ond** seria onde (rsrs) o público criaria e procuraria eventos que existem na cidade, ampliando a divulgação da informação além de circuitos menores.
 
 ## (Pilha de) Software
 
