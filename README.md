@@ -37,3 +37,17 @@ Abordagem _utility-first_ do _CSS_ de uso generalizado no desenvolvimento _web_.
 -   python manage.py migrate
 -   python manage.py popular
 -   python manage.py runserver
+
+## Demonstração
+
+### Consulta de Eventos
+
+![Demonstração da consulta de eventos](https://github.com/lrpohlmann/rede-social-eventos/blob/master/docs/gif/demonstracao_consulta_evento.gif)
+
+### Comentar Evento
+
+![Demonstração funcionalidade de comentar no evento](https://github.com/lrpohlmann/rede-social-eventos/blob/master/docs/gif/demonstracao_comentar.gif)
+
+### Edição de Perfil
+
+![Demonstração funcionalidade de editar o perfil](https://github.com/lrpohlmann/rede-social-eventos/blob/master/docs/gif/demonstracao_edicao_perfil.gif)
